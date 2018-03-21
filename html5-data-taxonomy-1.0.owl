@@ -1,0 +1,159 @@
+@prefix : <http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0> .
+
+<http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0> rdf:type owl:Ontology .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#Communication
+:Communication rdf:type owl:Class ;
+               rdfs:subClassOf :HTML5Access .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#DataAndFiles
+:DataAndFiles rdf:type owl:Class ;
+              rdfs:subClassOf :HTML5Access .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#Device
+:Device rdf:type owl:Class ;
+        rdfs:subClassOf :HTML5Access .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#HTML5Access
+:HTML5Access rdf:type owl:Class .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#Location
+:Location rdf:type owl:Class ;
+          rdfs:subClassOf :Device .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#Network
+:Network rdf:type owl:Class ;
+         rdfs:subClassOf :Communication .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#OSInformation
+:OSInformation rdf:type owl:Class ;
+               rdfs:subClassOf :System .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#Other
+:Other rdf:type owl:Class ;
+       rdfs:subClassOf :Communication .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#Resource
+:Resource rdf:type owl:Class ;
+          rdfs:subClassOf :Device .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#Storage
+:Storage rdf:type owl:Class ;
+         rdfs:subClassOf :DataAndFiles .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#System
+:System rdf:type owl:Class ;
+        rdfs:subClassOf :DataAndFiles .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#batteryStatus
+:batteryStatus rdf:type owl:Class ;
+               rdfs:subClassOf :Resource .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#bluetooth
+:bluetooth rdf:type owl:Class ;
+           rdfs:subClassOf :Network .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#browserVersion
+:browserVersion rdf:type owl:Class ;
+                rdfs:subClassOf :System .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#camera
+:camera rdf:type owl:Class ;
+        rdfs:subClassOf :Resource .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#contacts
+:contacts rdf:type owl:Class ;
+          rdfs:subClassOf :Other .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#deviceMotion
+:deviceMotion rdf:type owl:Class ;
+              rdfs:subClassOf :Location .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#deviceOrientation
+:deviceOrientation rdf:type owl:Class ;
+                   rdfs:subClassOf :Location .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#fileSystem
+:fileSystem rdf:type owl:Class ;
+            rdfs:subClassOf :Storage .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#geolocation
+:geolocation rdf:type owl:Class ;
+             rdfs:subClassOf :Location .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#indexedDB
+:indexedDB rdf:type owl:Class ;
+           rdfs:subClassOf :Storage .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#lightSensor
+:lightSensor rdf:type owl:Class ;
+             rdfs:subClassOf :Location .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#networkType
+:networkType rdf:type owl:Class ;
+             rdfs:subClassOf :Network .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#onlineStatus
+:onlineStatus rdf:type owl:Class ;
+              rdfs:subClassOf :Network .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#powerManager
+:powerManager rdf:type owl:Class ;
+              rdfs:subClassOf :Resource .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#proximitySensor
+:proximitySensor rdf:type owl:Class ;
+                 rdfs:subClassOf :Location .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#screenOrientation
+:screenOrientation rdf:type owl:Class ;
+                   rdfs:subClassOf :Location .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#vibration
+:vibration rdf:type owl:Class ;
+           rdfs:subClassOf :Resource .
+
+
+###  http://http://privacysafer.cs.ucy.ac.cy/ontologies/privacysafer-1.0#webNotification
+:webNotification rdf:type owl:Class ;
+                 rdfs:subClassOf :Other .
+
+
+###  Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

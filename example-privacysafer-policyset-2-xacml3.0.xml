@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet
+    xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	PolicySetId="urn:oasis:names:tc:xacml:3.0:example:policysetid:1"
+	Version="1.0">
+   <Description>
+	Example policy set for PrivacySafer.
+  </Description>
+  <Target>
+	<AnyOf>
+	 <AllOf>
+		 <Match
+		 MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+		  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">html5-data-taxonomy-1.0:html5access</AttributeValue>
+		 </Match>
+	   </AllOf>
+	 </AnyOf>
+  </Target> 
+  <Policy PolicyId="user12-geolocation-access" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable" Version="1.0">
+   <Target/>
+   <Rule Effect="Permit" RuleId="privacysafer-geolocation-access-rule">
+	 <Description>
+	  A web application may read geolocation in specific conditions for day and time.
+	 </Description>
+	 <Target>
+	   <AnyOf>
+		   <AllOf>
+			 <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+				 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HTML5Access:Device:Location:geolocation</AttributeValue>
+				<AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:2.0:resource:target-namespace" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+				DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+		   </Match>
+		   <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+			  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+			  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
+			  DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+		   </Match>	   
+		   </AllOf>
+	   </AnyOf>
+	 </Target>  
+	<Condition>
+	  <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:all-of">
+		<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-greater-than-or-equal">
+		<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only">
+		  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" 
+				DataType="http://www.w3.org/2001/XMLSchema#time" MustBePresent="true"></AttributeDesignator>
+		  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">09:00:00+05:00</AttributeValue>
+		</Apply>
+		<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-less-than-or-equal">
+		<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only">
+			<AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" 
+			DataType="http://www.w3.org/2001/XMLSchema#time"  MustBePresent="true"></AttributeDesignator>
+		  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">18:00:00+05:00</AttributeValue>
+		</Apply>			
+		 <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-set-equals">
+			<AttributeDesignator AttributeId="cy:ac:ucy:cs:seit:privacysafer:2.0::environment:current-day" Category="urn:oasis:names:tc:xacml:3.0:example-group"
+			DataType="http://www.w3.org/2001/XMLSchema#string" Category="day-group" MustBePresent="true"></AttributeDesignator>
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+			   <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Monday</AttributeValue>
+			   <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Tuesday</AttributeValue>
+			   <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Wednesday</AttributeValue>
+			   <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Thursday</AttributeValue>
+			   <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Friday</AttributeValue>
+			</Apply>
+		 </Apply> 
+	  </Apply>
+	</Condition>		 
+   </Rule>
+ </Policy>
+  <Policy PolicyId="user12-camera-access" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable" Version="1.0">
+   <Target/>
+   <Rule Effect="Permit" RuleId="privacysafer-camera-access-rule">
+	 <Description>
+	  A web application may have access to camera in specific conditions for battery level.
+	 </Description>
+	 <Target>
+	   <AnyOf>
+		   <AllOf>
+			 <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+				 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HTML5Access:Device:Resource:camera</AttributeValue>
+				<AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:2.0:resource:target-namespace" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+				DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+		   </Match>
+		   <Match MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+			  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">\*.\.edu</AttributeValue>
+			  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:3.0:example:attribute:role" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" 
+			  DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"></AttributeDesignator>
+		   </Match>
+		   <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+			  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">view</AttributeValue>
+			  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
+			  DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+		   </Match>
+		   </AllOf>
+	   </AnyOf>
+	 </Target>  
+	<Condition>
+	    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:all-of">
+		<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-greater-than-or-equal">
+		<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+		  <AttributeDesignator AttributeId="cy:ac:ucy:cs:seit:privacysafer:2.0::environment:current-battery" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" 
+				DataType="http://www.w3.org/2001/XMLSchema#nonNegativeInteger" MustBePresent="true"></AttributeDesignator>
+		  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">30</AttributeValue>
+		</Apply>			
+	  </Apply>
+	  </Apply>
+	</Condition>		 
+   </Rule>
+ </Policy>
+ <Policy PolicyId="user12-onlinestatus-access" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable" Version="1.0">
+   <Target/>
+   <Rule Effect="Permit" RuleId="privacysafer-onlinestatus-access-rule">
+	 <Description>
+	  A web application may have access to the online status.
+	 </Description>
+	 <Target>
+	   <AnyOf>
+		   <AllOf>
+			 <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+				<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HTML5Access:Network:onlineStatus</AttributeValue>
+				<AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:2.0:resource:target-namespace" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+				DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+		   </Match>
+		   <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+			  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+			  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
+			  DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+		   </Match>
+		   </AllOf>
+	   </AnyOf>
+	 </Target>  	 
+   </Rule>
+ </Policy>
+</PolicySet>

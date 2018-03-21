@@ -1,0 +1,45 @@
+      <?xml version="1.0" encoding="UTF-8"?>
+          <PolicySet
+           xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            PolicySetId="urn:oasis:names:tc:xacml:3.0:example:policysetid:1"
+            Version="1.0">
+           <Description>
+            Example policy set for PrivacySafer.
+          </Description>
+          <Target>
+            <AnyOf>
+             <AllOf>
+                 <Match
+                 MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
+                     >html5-data-taxonomy-1.0:html5access</AttributeValue>
+                 </Match>
+               </AllOf>
+             </AnyOf>
+           </Target>
+  <Policy PolicyId="user11-geolocation-access" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0">
+   <Target/>
+   <Rule Effect="Permit" RuleId="privacysafer-geolocation-access-rule">
+	 <Description>
+	  A web application may read geolocation without any restriction or condition.
+	 </Description>
+	 <Target>
+	   <AnyOf>
+		   <AllOf>
+			 <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+				 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HTML5Access:Device:Location:geolocation</AttributeValue>
+				<AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:2.0:resource:target-namespace" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"
+				DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+		   </Match>
+		   <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+			  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+			  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" 
+			  DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+		   </Match>	   
+		   </AllOf>
+	   </AnyOf?
+	 </Target>  		 
+   </Rule>
+ </Policy>
+</PolicySet>
